@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshirely <dshirely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 16:42:52 by dshirely          #+#    #+#             */
-/*   Updated: 2021/12/10 16:54:47 by dshirely         ###   ########.fr       */
+/*   Created: 2021/12/10 16:42:57 by dshirely          #+#    #+#             */
+/*   Updated: 2021/12/10 16:53:58 by dshirely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_fd(int n, int dlina)
+int	ft_putstr(char *str)
 {
-	long	chislo;
+	int	i;
 
-	chislo = (long)n;
-	if (chislo < 0)
+	i = 0;
+	if (!str)
 	{
-		dlina += ft_putchar('-');
-		chislo = -chislo;
+		write (1, "(null)", 6);
+		return (6);
 	}
-	if (chislo >= 10)
+	while (str[i])
 	{
-		dlina = ft_putnbr_fd(chislo / 10, dlina);
-		dlina = ft_putnbr_fd(chislo % 10, dlina);
+		write (1, &str[i], 1);
+		i++;
 	}
-	else
-		dlina += ft_putchar(chislo + '0');
-	return (dlina);
+	return (i);
 }
